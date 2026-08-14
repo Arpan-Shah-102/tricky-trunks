@@ -1,0 +1,118 @@
+.title-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100dvh;
+
+  &.new-load {
+    & img {
+      animation: fadeInImg 2.5s ease-in-out;
+    }
+    & button {
+      animation: fadeInBtn 2.5s ease-in-out;
+    }
+  }
+
+  &.fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+    pointer-events: none;
+    z-index: -10;
+  }
+}
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  width: 50vw;
+  min-width: 300px;
+  height: auto;
+  filter: drop-shadow(0 0 5px #000000);
+  user-select: none;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: transparent;
+  filter: drop-shadow(0 0 2px #000000);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    scale: 1.1;
+    color: white;
+  }
+  &:active {
+    background-color: transparent !important;
+    scale: 0.9;
+    opacity: 0.8;
+  }
+}
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.play {
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+
+  &:hover {
+    background-color: #4CAF50;
+  }
+  &:active {
+    color: #4CAF50;
+  }
+}
+.options-btn {
+  color: gray;
+  border: 2px solid gray;
+
+  &:hover {
+    background-color: gray;
+  }
+  &:active {
+    color: darkgray;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInImg {
+  0% {
+    opacity: 0;
+    transform: scale(5);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeInBtn {
+  0%, 60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

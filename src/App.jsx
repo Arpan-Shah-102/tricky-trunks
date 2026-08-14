@@ -1,11 +1,12 @@
-import './App.css'
+import { TitleScreen } from './components/TitleScreen';
+import './App.css';
 
 function App() {
   return (
     <>
-      <h1>Tricky Trunks</h1>
+      <TitleScreen />
     </>
   )
 }
 
-export default App
+export default App;
