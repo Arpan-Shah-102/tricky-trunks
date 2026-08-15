@@ -1,24 +1,68 @@
+import { useState, useEffect } from 'react';
 import './TitleScreen.css';
 
-export function TitleScreen() {
+export function TitleScreen({ titleScreenShown, setTitleScreenShown }) {
+  const [optionsShown, setOptionsShown] = useState(false);
+  const [muted, setMuted] = useState(localStorage.getItem('muted') === 'true');
+
+  useEffect(() => {
+    const titleScreenElement = document.querySelector('.title-screen');
+    const optionsScreenElement = document.querySelector('.options-screen');
+
+    titleScreenElement.style.transform = optionsShown ? 'translateX(-100%)' : 'translateX(0)';
+    optionsScreenElement.style.left = optionsShown ? '0' : '100%';
+  }, [optionsShown]);
+  useEffect(() => {
+    const titleScreenElement = document.querySelector('.title-screen');
+    titleScreenElement.className = `title-screen fade-${!titleScreenShown ? 'out' : 'in'}`;
+    if (titleScreenShown) {
+      titleScreenElement.style.display = 'flex';
+      setTimeout(() => {
+        titleScreenElement.classList.remove('fade-in');
+      }, 490);
+    }
+  }, [titleScreenShown]);
+
   const loadedBefore = localStorage.getItem('loadedBefore') || false;
   localStorage.setItem('loadedBefore', 'true');
 
   function clickPlay() {
+    setTitleScreenShown(false);
     document.querySelector('.title-screen').classList.add('fade-out');
     setTimeout(() => {
       document.querySelector('.title-screen').style.display = 'none';
     }, 490);
   }
+  function toggleOptions() {
+    setOptionsShown(!optionsShown);
+  }
+  function muteAudio() {
+    localStorage.setItem('muted', !muted);
+    setMuted(!muted);
+  }
+  function resetGame() {
+    if (confirm('Are you sure you want to reset your progress?')) {
+      localStorage.clear();
+      location.reload();
+    }
+  }
 
   return (
-    <div className={`title-screen ${!loadedBefore ? 'new-load' : ''}`}>
-      <h1><img src="/logo-two-lines.png" alt="Tricky Trunks" /></h1>
+    <>
+      <div className={`title-screen ${!loadedBefore ? 'new-load' : ''}`}>
+        <h1><img src="/logo-two-lines.png" alt="Tricky Trunks" /></h1>
 
-      <div className="options">
-        <button className="play" onClick={clickPlay}>Play</button>
-        <button className="options-btn">Options</button>
+        <div className="options">
+          <button className="play" onClick={clickPlay}>Play</button>
+          <button className="options-btn" onClick={toggleOptions}>Options</button>
+        </div>
       </div>
-    </div>
+      <div className={`options-screen`}>
+        <button className="back-btn" onClick={toggleOptions}>Back</button>
+        <h2>Options</h2>
+        <label>Muted: <input type="checkbox" checked={muted} onChange={muteAudio} /></label>
+        <button className="reset-btn" onClick={resetGame}>Reset Data</button>
+      </div>
+    </>
   )
 }

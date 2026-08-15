@@ -1,10 +1,16 @@
-import { TitleScreen } from './components/TitleScreen';
+import { Route, Routes } from 'react-router';
+import { HomeScreen } from './pages/HomeScreen';
 import './App.css';
 
 function App() {
   return (
     <>
-      <TitleScreen />
+      <Routes>
+        <Route
+          path="/"
+          element={<HomeScreen />}
+        />
+      </Routes>
     </>
   )
 }

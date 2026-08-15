@@ -1,0 +1,16 @@
+.level-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100dvh;
+  width: 100dvw;
+}
+h2 {
+  font-size: 42px;
+  text-shadow: 0 0 8px #000000;
+  font-weight: thin;
+  color: rgb(193, 255, 193);
+  -webkit-text-stroke: 0.1px rgb(255, 255, 255);
+}
