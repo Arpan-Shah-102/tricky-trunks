@@ -1,0 +1,45 @@
+a {
+  text-decoration: none;
+  user-select: none;
+
+  &.locked {
+    pointer-events: none;
+    opacity: 0.75;
+  }
+}
+.btn {
+  height: 100%;
+  width: 100%;
+  border: 6px solid deepskyblue;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  color: deepskyblue;
+  font-weight: bold;
+  filter: drop-shadow(0 0 4px #000000);
+
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    scale: 1.1;
+    color: white;
+  }
+  &:active {
+    color: deepskyblue;
+    scale: 0.9;
+    opacity: 0.8;
+  }
+
+  &.completed, &.current-level {
+    color: white;
+    text-shadow: 0 0 4px #000000;
+  }
+  &.completed {
+    background-color: deepskyblue;
+  }
+  &.current-level {
+    background-color: limegreen;
+    box-shadow: inset 0 0 4px #000000;
+  }
+}

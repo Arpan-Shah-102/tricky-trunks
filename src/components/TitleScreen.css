@@ -48,6 +48,7 @@ h1 {
 img {
   width: 50vw;
   min-width: 300px;
+  max-width: 600px;
   height: auto;
   filter: drop-shadow(0 0 5px #000000);
   user-select: none;
@@ -101,6 +102,52 @@ button {
   &:active {
     color: darkgray;
   }
+}
+.back-btn {
+  background-color: skyblue;
+  color: white;
+  border: 2px solid skyblue;
+  border-radius: 8px;
+  padding: 4px 8px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: transparent;
+    color: skyblue;
+  }
+  &:active {
+    background-color: skyblue !important;
+    color: white;
+  }
+}
+.reset-btn {
+  color: crimson;
+  border: 2px solid crimson;
+
+  &:hover {
+    background-color: crimson;
+  }
+  &:active {
+    color: crimson;
+  }
+}
+.muted-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  & input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}
+.screen-container {
+  overflow: hidden;
 }
 
 @keyframes fadeOut {

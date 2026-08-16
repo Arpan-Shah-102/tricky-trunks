@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TitleScreen } from '../components/TitleScreen';
 import { LevelSelector } from '../components/LevelSelector';
 
-export function HomeScreen() {
+export function HomeScreen({ currentLevel }) {
   const [titleScreenShown, setTitleScreenShown] = useState(true);
   return (
     <>
@@ -13,6 +13,7 @@ export function HomeScreen() {
       <LevelSelector
         titleScreenShown={titleScreenShown}
         setTitleScreenShown={setTitleScreenShown}
+        currentLevel={currentLevel}
       />
     </>
   )

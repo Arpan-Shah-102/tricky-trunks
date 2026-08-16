@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { playClickSfx } from '../utils/sfxManager';
 import './TitleScreen.css';
 
 export function TitleScreen({ titleScreenShown, setTitleScreenShown }) {
@@ -7,14 +8,6 @@ export function TitleScreen({ titleScreenShown, setTitleScreenShown }) {
 
   useEffect(() => {
     const titleScreenElement = document.querySelector('.title-screen');
-    const optionsScreenElement = document.querySelector('.options-screen');
-
-    titleScreenElement.style.transform = optionsShown ? 'translateX(-100%)' : 'translateX(0)';
-    optionsScreenElement.style.left = optionsShown ? '0' : '100%';
-  }, [optionsShown]);
-  useEffect(() => {
-    const titleScreenElement = document.querySelector('.title-screen');
-    titleScreenElement.className = `title-screen fade-${!titleScreenShown ? 'out' : 'in'}`;
     if (titleScreenShown) {
       titleScreenElement.style.display = 'flex';
       setTimeout(() => {
@@ -43,13 +36,17 @@ export function TitleScreen({ titleScreenShown, setTitleScreenShown }) {
   function resetGame() {
     if (confirm('Are you sure you want to reset your progress?')) {
       localStorage.clear();
+      setOptionsShown(false);
       location.reload();
     }
   }
 
   return (
-    <>
-      <div className={`title-screen ${!loadedBefore ? 'new-load' : ''}`}>
+    <div className="screen-container">
+      <div
+        className={`title-screen ${!loadedBefore ? 'new-load' : ''} fade-${titleScreenShown ? 'in' : 'out'}`}
+        style={{ transform: optionsShown ? 'translateX(-100%)' : 'translateX(0)' }}
+      >
         <h1><img src="/logo-two-lines.png" alt="Tricky Trunks" /></h1>
 
         <div className="options">
@@ -57,12 +54,18 @@ export function TitleScreen({ titleScreenShown, setTitleScreenShown }) {
           <button className="options-btn" onClick={toggleOptions}>Options</button>
         </div>
       </div>
-      <div className={`options-screen`}>
+      <div
+        className={`options-screen`}
+        style={{ left: optionsShown ? '0' : '100%' }}
+      >
         <button className="back-btn" onClick={toggleOptions}>Back</button>
         <h2>Options</h2>
-        <label>Muted: <input type="checkbox" checked={muted} onChange={muteAudio} /></label>
+        <label className="muted-toggle">
+          Muted:
+          <input type="checkbox" checked={muted} onChange={muteAudio} />
+        </label>
         <button className="reset-btn" onClick={resetGame}>Reset Data</button>
       </div>
-    </>
+    </div>
   )
 }
