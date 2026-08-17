@@ -1,30 +1,22 @@
-import { useState, useEffect } from 'react';
-import { playClickSfx } from '../utils/sfxManager';
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
 import './TitleScreen.css';
 
-export function TitleScreen({ titleScreenShown, setTitleScreenShown }) {
+export function TitleScreen({ hintsEnabled, setHintsEnabled, quickNavigate, setQuickNavigate, fadeDuration }) {
+  const [titleScreenShown, setTitleScreenShown] = useState(true);
   const [optionsShown, setOptionsShown] = useState(false);
+
   const [muted, setMuted] = useState(localStorage.getItem('muted') === 'true');
-
-  useEffect(() => {
-    const titleScreenElement = document.querySelector('.title-screen');
-    if (titleScreenShown) {
-      titleScreenElement.style.display = 'flex';
-      setTimeout(() => {
-        titleScreenElement.classList.remove('fade-in');
-      }, 490);
-    }
-  }, [titleScreenShown]);
-
+  const navigate = useNavigate();
+  
   const loadedBefore = localStorage.getItem('loadedBefore') || false;
   localStorage.setItem('loadedBefore', 'true');
 
   function clickPlay() {
     setTitleScreenShown(false);
-    document.querySelector('.title-screen').classList.add('fade-out');
     setTimeout(() => {
-      document.querySelector('.title-screen').style.display = 'none';
-    }, 490);
+      navigate('/levels');
+    }, fadeDuration - 20);
   }
   function toggleOptions() {
     setOptionsShown(!optionsShown);
@@ -39,6 +31,14 @@ export function TitleScreen({ titleScreenShown, setTitleScreenShown }) {
       setOptionsShown(false);
       location.reload();
     }
+  }
+  function changeNavigation() {
+    localStorage.setItem('quickNavigate', !quickNavigate);
+    setQuickNavigate(!quickNavigate);
+  }
+  function updateHintsEnabled() {
+    localStorage.setItem('hintsEnabled', !hintsEnabled);
+    setHintsEnabled(!hintsEnabled);
   }
 
   return (
@@ -60,9 +60,17 @@ export function TitleScreen({ titleScreenShown, setTitleScreenShown }) {
       >
         <button className="back-btn" onClick={toggleOptions}>Back</button>
         <h2>Options</h2>
-        <label className="muted-toggle">
+        <label className="toggle muted-toggle">
           Muted:
           <input type="checkbox" checked={muted} onChange={muteAudio} />
+        </label>
+        <label className="toggle quick-navigate-toggle">
+          Quick Navigate:
+          <input type="checkbox" checked={quickNavigate} onChange={changeNavigation} />
+        </label>
+        <label className="toggle help-mode-toggle">
+          Hints:
+          <input type="checkbox" checked={hintsEnabled} onChange={updateHintsEnabled} />
         </label>
         <button className="reset-btn" onClick={resetGame}>Reset Data</button>
       </div>

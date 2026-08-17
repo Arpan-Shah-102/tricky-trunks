@@ -16,15 +16,6 @@
       animation: fadeInBtn 2.5s ease-in-out;
     }
   }
-
-  &.fade-out {
-    animation: fadeOut 0.5s ease-in-out;
-    pointer-events: none;
-    z-index: -10;
-  }
-  &.fade-in {
-    animation: fadeOut 0.5s ease-in-out reverse;
-  }
 }
 .options-screen {
   position: absolute;
@@ -134,10 +125,12 @@ button {
     color: crimson;
   }
 }
-.muted-toggle {
+.toggle {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  user-select: none;
   gap: 10px;
 
   & input {
@@ -148,15 +141,6 @@ button {
 }
 .screen-container {
   overflow: hidden;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 
 @keyframes fadeInImg {

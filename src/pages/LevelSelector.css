@@ -6,13 +6,6 @@
   gap: 20px;
   height: 100dvh;
   width: 100dvw;
-
-  &.fade-in {
-    animation: fade-in 0.5s ease-in-out;
-  }
-  &.fade-out {
-    animation: fade-in 0.5s ease-in-out reverse;
-  }
 }
 h2 {
   font-size: 42px;

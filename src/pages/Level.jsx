@@ -10,7 +10,7 @@ export function Level({ currentLevel, setCurrentLevel }) {
     <div className="level-container">
       <h2>Level {currentLevel}</h2>
       <a onClick={completeLevel}>Complete Level</a>
-      <NavLink to="/">Back to Home</NavLink>
+      <NavLink to="/levels">Back to Levels</NavLink>
     </div>
   )
 }

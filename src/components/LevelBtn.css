@@ -1,12 +1,3 @@
-a {
-  text-decoration: none;
-  user-select: none;
-
-  &.locked {
-    pointer-events: none;
-    opacity: 0.75;
-  }
-}
 .btn {
   height: 100%;
   width: 100%;
@@ -19,6 +10,15 @@ a {
   color: deepskyblue;
   font-weight: bold;
   filter: drop-shadow(0 0 4px #000000);
+  
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+
+  &.locked {
+    pointer-events: none;
+    opacity: 0.75;
+  }
 
   transition: all 0.2s ease-in-out;
   &:hover {
