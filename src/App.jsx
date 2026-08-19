@@ -4,6 +4,7 @@ import { LevelSelector } from './pages/LevelSelector';
 import { TitleScreen } from './pages/TitleScreen';
 import { Level } from './pages/Level';
 import { ErrorPage } from './pages/ErrorPage';
+import { createBaseSfx } from './utils/sfxManager';
 import './App.css';
 
 function App() {
@@ -14,8 +15,14 @@ function App() {
   const totalLevels = 9;
 
   useEffect(() => {
+    createBaseSfx();
+  }, []);
+  useEffect(() => {
     document.body.style = `--fade-duration: ${fadeDuration}ms`;
   }, [fadeDuration]);
+  useEffect(() => {
+    localStorage.setItem('currentLevel', currentLevel);
+  }, [currentLevel]);
 
   return (
     <Routes>
@@ -46,9 +53,11 @@ function App() {
           path={`/level/${index + 1}`}
           element={
             <Level
+              key={index + 1}
               currentLevel={index + 1}
               setCurrentLevel={setCurrentLevel}
               hintsEnabled={hintsEnabled}
+              fadeDuration={fadeDuration}
             />
           }
         />

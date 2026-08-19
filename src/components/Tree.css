@@ -1,4 +1,54 @@
-.tree {
-  height: 200px;
-  width: 200px;
+.tree-ground {
+  height: 150px;
+  width: 150px;
+  background: url('/land.png') no-repeat center center / contain;
+  position: relative;
+  filter: drop-shadow(0 0 4px #000000);
+  transition: all 0.3s ease-in-out;
+
+  &.hinty-tree.tree-squirrel .tree-content {
+    background: url('/tree-hole.png') no-repeat center center / contain;
+  }
+  & .tree-content {
+    position: absolute;
+    top: -50px;
+    left: 25px;
+    background: url('/tree.png') no-repeat center center / contain;
+    width: 100px;
+    height: 150px;
+    background-position: center;
+    background-size: contain;
+  }
+  &.tree-chopped {
+    pointer-events: none;
+    background-image: url('/land-good.png');
+
+    & .tree-content {
+      background-image: url('/tree-trunk.png');
+    }
+
+    &.tree-squirrel {
+      background-image: url('/land-bad.png');
+
+      & .tree-content {
+        background-image: url('/tree-trunk-squirrel.png');
+      }
+    }
+  }
+  & .hitbox {
+    position: absolute;
+    cursor: pointer;
+    top: 25px;
+    width: 100px;
+    height: 150px;
+    border-radius: 16px;
+  }
+  &:has(.hitbox:hover) {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px #000000);
+  }
+  &:has(.hitbox:active) {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
 }

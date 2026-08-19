@@ -3,12 +3,19 @@ A react project where you chop trees to collect wood but you can't hit the famil
 
 ### Update Log
 
-#### Errors Update V1.4 - 8/15/2026
+#### Levels Update V2.0 - 8/18/2026
+1. Added Button Sfx
+2. Implemented Levels
+3. Added Level Completion Screens
+4. Added generating level data
+5. Many Bug fixes
+
+#### Errors Update V1.5 - 8/15/2026
 1. Added Error Screen
 2. Seperated Title Screen and Level Screen
 3. Continued Working on Building Levels
-4. Lots of bug fixes
-(SFX coming soon)
+4. Added new options in options pannel
+5. Lots of bug fixes
 
 #### Title Screen Update 1.0 - 8/15/2026
 1. Fixed options bug when reloading

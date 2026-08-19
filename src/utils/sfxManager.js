@@ -11,11 +11,23 @@ export function playSound(sfx) {
   });
 }
 
-export function addBaseSfx(element) {
-  element.addEventListener('mousedown', () => {
-    playSound(sfx.clickDown);
-  });
-  element.addEventListener('mouseup', () => {
-    playSound(sfx.clickUp);
-  });
+let baseSfxCreated = false;
+export function createBaseSfx() {
+  if (baseSfxCreated) return;
+  baseSfxCreated = true;
+
+  const selectors = ['button', 'div.btn', 'label.toggle'];
+
+  for (const selector of selectors) {
+    document.addEventListener('mousedown', (e) => {
+      if (e.target.matches(selector)) {
+        playSound(sfx.clickDown);
+      }
+    });
+    document.addEventListener('mouseup', (e) => {
+      if (e.target.matches(selector)) {
+        playSound(sfx.clickUp);
+      }
+    });
+  }
 }

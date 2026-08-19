@@ -1,0 +1,20 @@
+.tree-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-template-rows: repeat(3, 150px);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.back-to-levels {
+  padding: 8px 16px;
+  border: 2px solid skyblue;
+  color: skyblue;
+
+  &:hover {
+    background-color: skyblue;
+  }
+  &:active {
+    color: skyblue;
+  }
+}

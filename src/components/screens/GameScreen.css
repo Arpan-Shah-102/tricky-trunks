@@ -1,0 +1,55 @@
+.end-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+
+  &.hidden {
+    display: none !important;
+  }
+  & button {
+    padding: 8px 16px;
+    width: 150px;
+  }
+}
+.restart-btn {
+  color: crimson;
+  border: 2px solid crimson;
+
+  &:hover {
+    background-color: crimson;
+  }
+  &:active {
+    color: crimson;
+  }
+}
+.back-to-levels-btn {
+  color: skyblue;
+  border: 2px solid skyblue;
+
+  &:hover {
+    background-color: skyblue;
+  }
+  &:active {
+    color: skyblue;
+  }
+}
+.next-level-btn {
+  color: limegreen;
+  border: 2px solid limegreen;
+
+  &:hover {
+    background-color: limegreen;
+  }
+  &:active {
+    color: limegreen;
+  }
+}

@@ -1,24 +1,47 @@
+import { useEffect } from 'react';
 import { Tree } from './Tree';
 import './TreeGrid.css';
 
-export function TreeGrid({ hintsEnabled, isTreeSquirrel, isTreeChopped, currentLevel }) {
-  const badTreeAmount = currentLevel;
-  const goodTreeAmount = 9 - badTreeAmount;
-  const trees = Array.from({ length: 9}, (_, index) => {
-    
-  });
+export function TreeGrid({ trees, setTreesChopped, treesChopped, currentLevel, gameState, setGameState, handleLevelComplete, hintsEnabled }) {
+
+  useEffect(() => {
+    let squirrelsChopped = false;
+    trees.forEach((isTreeSquirrel, index) => {
+      if (isTreeSquirrel && treesChopped[index]) {
+        squirrelsChopped = true;
+      }
+    });
+
+    const totalTreesChopped = treesChopped.filter(chopped => chopped == true).length;
+    if (squirrelsChopped) {
+      setGameState('lose');
+    } else if (totalTreesChopped == 3) {
+      setGameState(currentLevel >= 9 ? 'win' : 'next-level');
+    }
+  }, [trees, treesChopped, currentLevel, setGameState]);
+
+  function handleBackToLevels() {handleLevelComplete()}
 
   return (
-    <div className="tree-grid">
-      {Array.from({ length: 9 }, (_, index) => (
-        <Tree
-          key={index}
-          hintsEnabled={hintsEnabled}
-          isTreeSquirrel={isTreeSquirrel}
-          isTreeChopped={isTreeChopped}
-          treeNumber={index + 1}
-        />
-      ))}
-    </div>
+    <>
+      <h2>Level {currentLevel}</h2>
+      <div
+        className="tree-grid"
+        style={{ pointerEvents: gameState == 'in-progress' ? 'auto' : 'none' }}
+      >
+        {Array.from({ length: 12 }, (_, index) => (
+          <Tree
+            key={index}
+            hintsEnabled={hintsEnabled}
+            isTreeSquirrel={trees[index]}
+            isTreeChopped={treesChopped[index]}
+            treesChopped={treesChopped}
+            setTreesChopped={setTreesChopped}
+            treeNumber={index + 1}
+          />
+        ))}
+      </div>
+      <button onClick={handleBackToLevels} className="back-to-levels">Back to Levels</button>
+    </>
   )
 }

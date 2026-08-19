@@ -6,31 +6,32 @@
   gap: 20px;
   height: 100dvh;
   width: 100dvw;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-h1 {
-  font-size: 52px;
-  text-shadow: 0 0 8px #000000;
-  font-weight: thin;
-  color: rgb(255, 0, 0);
-  -webkit-text-stroke: 0.1px rgb(255, 255, 255);
-}
-h2 {
-  font-size: 36px;
-  color: rgb(255, 194, 194);
-}
-p {
-  font-size: 24px;
-  color: rgb(255, 194, 194);
-}
-button {
-  color: crimson;
-  border: 2px solid crimson;
 
-  &:hover {
-    background-color: crimson;
+  & h1 {
+    font-size: 52px;
+    text-shadow: 0 0 8px #000000;
+    font-weight: thin;
+    color: rgb(255, 0, 0);
+    -webkit-text-stroke: 0.1px rgb(255, 255, 255);
   }
-  &:active {
+  & h2 {
+    font-size: 36px;
+    color: rgb(255, 194, 194);
+  }
+  & p {
+    font-size: 24px;
+    color: rgb(255, 194, 194);
+  }
+  & button {
     color: crimson;
+    border: 2px solid crimson;
+  
+    &:hover {
+      background-color: crimson;
+      color: white;
+    }
+    &:active {
+      color: crimson;
+    }
   }
 }
