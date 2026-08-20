@@ -1,6 +1,17 @@
 # Tricky Trunks
 A react project where you chop trees to collect wood but you can't hit the family of squirrels in the forest. Each level of the forest will have more squirrels and you have to try not to hit any of them.
 
+## Setup
+### Online
+1. Visit [Tricky Trunks](https://tricky-trunks.vercel.app/)
+### Download
+1. Download the project code or clone the repo
+2. Open the unzipped project folder in your terminal
+3. Install dependencies with `npm install`
+4. Start the app with `npm run dev`
+5. Open [http://localhost:5173/](http://localhost:5173/) in your browser
+
+
 ### Update Log
 
 #### The Final Update V2.7 - 8/19/2026
