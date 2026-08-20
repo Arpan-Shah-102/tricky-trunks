@@ -1,6 +1,13 @@
-const sfx = {
+export const sfx = {
   clickDown: new Audio('/audio/click-1.mp3'),
   clickUp: new Audio('/audio/click-2.mp3'),
+  win: new Audio('/audio/win.mp3'),
+  nextLevel: new Audio('/audio/next-level.mp3'),
+  fail: new Audio('/audio/fail.mp3'),
+  chopSquirrel: new Audio('/audio/chop-squirrel.mp3'),
+  chop1: new Audio('/audio/chop-1.mp3'),
+  chop2: new Audio('/audio/chop-2.mp3'),
+  chop3: new Audio('/audio/chop-3.mp3'),
 }
 
 export function playSound(sfx) {
@@ -9,6 +16,12 @@ export function playSound(sfx) {
   audio.addEventListener('ended', () => {
     audio.remove();
   });
+}
+
+export function playRandomChop() {
+  const chopSounds = [sfx.chop1, sfx.chop2, sfx.chop3];
+  const randomIndex = Math.floor(Math.random() * chopSounds.length);
+  playSound(chopSounds[randomIndex]);
 }
 
 let baseSfxCreated = false;

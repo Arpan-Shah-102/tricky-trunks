@@ -12,6 +12,23 @@ export function TitleScreen({ hintsEnabled, setHintsEnabled, quickNavigate, setQ
   const loadedBefore = localStorage.getItem('loadedBefore') || false;
   localStorage.setItem('loadedBefore', 'true');
 
+  document.body.addEventListener('keydown', (event) => {
+    const key = event.key.toLowerCase();
+    if (key == 'p') {
+      clickPlay();
+    } else if (key == 'o') {
+      toggleOptions();
+    } else if (key == 'm') {
+      muteAudio();
+    } else if (key == 'h') {
+      updateHintsEnabled();
+    } else if (key == 'q' || key == 'n') {
+      setQuickNavigate(!quickNavigate);
+    } else if (key == 't') {
+      goToTutorial();
+    }
+  });
+
   function clickPlay() {
     setTitleScreenShown(false);
     setTimeout(() => {
@@ -39,6 +56,13 @@ export function TitleScreen({ hintsEnabled, setHintsEnabled, quickNavigate, setQ
   function updateHintsEnabled() {
     localStorage.setItem('hintsEnabled', !hintsEnabled);
     setHintsEnabled(!hintsEnabled);
+  }
+  function goToTutorial() {
+    setOptionsShown(false);
+    setTitleScreenShown(false);
+    setTimeout(() => {
+      navigate('/tutorial');
+    }, fadeDuration - 20);
   }
 
   return (
@@ -72,6 +96,7 @@ export function TitleScreen({ hintsEnabled, setHintsEnabled, quickNavigate, setQ
           Hints:
           <input type="checkbox" checked={hintsEnabled} onChange={updateHintsEnabled} />
         </label>
+        <button className="tutorial-btn" onClick={goToTutorial}>Tutorial</button>
         <button className="reset-btn" onClick={resetGame}>Reset Data</button>
       </div>
     </div>

@@ -3,6 +3,14 @@ A react project where you chop trees to collect wood but you can't hit the famil
 
 ### Update Log
 
+#### The Final Update V2.7 - 8/19/2026
+1. Changed Level Restart Logic to Keep the squirrel trees at the same place
+2. Added Sound Effects to Trees
+3. Added Sound Effects to End of level screens
+5. Added Mobile Support
+6. Added Quick Keybinds
+7. Added a tutorial page
+
 #### Levels Update V2.0 - 8/18/2026
 1. Added Button Sfx
 2. Implemented Levels

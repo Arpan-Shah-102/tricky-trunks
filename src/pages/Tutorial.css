@@ -1,0 +1,47 @@
+body {
+  overflow-y: auto !important;
+}
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+  padding: 20px;
+  text-shadow: 0 0 8px #000000;
+
+  & h3 {
+    font-size: 32px;
+    color: rgb(171, 238, 255);
+    -webkit-text-stroke: 0.1px rgb(255, 255, 255);
+  }
+  & h4 {
+    font-size: 24px;
+    color: rgb(171, 238, 255);
+    -webkit-text-stroke: 0.1px rgb(255, 255, 255);
+  }
+}
+.back-to-home {
+  position: sticky;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: skyblue;
+  border: 2px solid skyblue;
+
+  &:hover {
+    background-color: skyblue;
+  }
+  &:active {
+    color: skyblue;
+  }
+}
+.tutorial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 20px;
+}

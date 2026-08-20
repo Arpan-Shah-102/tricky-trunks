@@ -5,6 +5,7 @@ import { LoseScreen } from "../components/screens/Lose";
 import { NextLevelScreen } from "../components/screens/NextLevel";
 import { WinScreen } from "../components/screens/Win";
 import { genArray } from '../utils/generateRandomLists';
+import { sfx, playSound } from '../utils/sfxManager';
 import "./Level.css";
 
 export function Level({ fadeDuration, currentLevel, hintsEnabled, setCurrentLevel }) {
@@ -12,16 +13,32 @@ export function Level({ fadeDuration, currentLevel, hintsEnabled, setCurrentLeve
   const [levelEndScreenShown, setLevelEndScreenShown] = useState(false);
   const [gameState, setGameState] = useState('in-progress'); // 'in-progress', 'next-level', 'win', 'lose'
   const [treesChopped, setTreesChopped] = useState(Array(12).fill(false));
-  const [trees, setTrees] = useState(genArray(12, currentLevel));
+  const [trees] = useState(genArray(12, currentLevel));
   const navigate = useNavigate();
 
   useEffect(() => {
     if (gameState === 'next-level' || gameState === 'win') {
       setCurrentLevel(prev => Math.max(prev, currentLevel + 1));
-    } else if (gameState === 'lose') {
-      console.log('Lose');
     }
-  }, [gameState, setCurrentLevel, currentLevel]);
+
+    setTimeout(() => {
+      if (gameState === 'next-level') {
+        playSound(sfx.nextLevel);
+      } else if (gameState === 'lose') {
+        playSound(sfx.fail);
+      } else if (gameState === 'win') {
+        playSound(sfx.win);
+      }
+    }, fadeDuration - 20);
+  }, [fadeDuration, gameState, setCurrentLevel, currentLevel]);
+
+  document.body.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' || event.key === 'Backspace' || event.key.toLowerCase() == 'b') {
+      handleLevelComplete();
+    } else if (event.key === 'r') {
+      restartLevel();
+    }
+  });
 
   function handleLevelComplete(location = 'levels') {
     setLevelShown(false);
@@ -35,7 +52,6 @@ export function Level({ fadeDuration, currentLevel, hintsEnabled, setCurrentLeve
     setTimeout(() => {
       setGameState('in-progress');
       setTreesChopped(Array(12).fill(false));
-      setTrees(genArray(12, currentLevel));
       setLevelShown(true);
     }, fadeDuration - 20);
   }

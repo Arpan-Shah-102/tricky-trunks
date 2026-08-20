@@ -1,3 +1,4 @@
+import { sfx, playSound, playRandomChop } from '../utils/sfxManager';
 import './Tree.css';
 
 export function Tree({ hintsEnabled, isTreeSquirrel, isTreeChopped, treesChopped, setTreesChopped, treeNumber }) {
@@ -5,6 +6,11 @@ export function Tree({ hintsEnabled, isTreeSquirrel, isTreeChopped, treesChopped
     const newTreesChopped = [...treesChopped];
     newTreesChopped[treeNumber - 1] = true;
     setTreesChopped(newTreesChopped);
+    if (isTreeSquirrel) {
+      playSound(sfx.chopSquirrel);
+    } else {
+      playRandomChop();
+    }
   }
 
   return (

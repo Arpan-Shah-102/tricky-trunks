@@ -4,6 +4,7 @@ import { LevelSelector } from './pages/LevelSelector';
 import { TitleScreen } from './pages/TitleScreen';
 import { Level } from './pages/Level';
 import { ErrorPage } from './pages/ErrorPage';
+import { Tutorial } from './pages/Tutorial';
 import { createBaseSfx } from './utils/sfxManager';
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
   useEffect(() => {
     createBaseSfx();
   }, []);
+
   useEffect(() => {
     document.body.style = `--fade-duration: ${fadeDuration}ms`;
   }, [fadeDuration]);
@@ -66,6 +68,14 @@ function App() {
         path="*"
         element={
           <ErrorPage
+            fadeDuration={fadeDuration}
+          />
+        }
+      />
+      <Route
+        path="/tutorial"
+        element={
+          <Tutorial
             fadeDuration={fadeDuration}
           />
         }

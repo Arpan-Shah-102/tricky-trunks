@@ -4,6 +4,12 @@ export function NextLevelScreen({ currentLevel, hidden, nextLevelScreenShown, ha
   function startNextLevel() {handleLevelComplete('/level/' + (currentLevel + 1))}
   function backToLevels() {handleLevelComplete()}
 
+  document.body.addEventListener('keydown', (event) => {
+    if (event.key.toLowerCase() === 'n') {
+      startNextLevel();
+    }
+  });
+
   return (
     <div className={`end-screen next-level-screen ${hidden ? 'hidden' : ''} fade-${!nextLevelScreenShown ? 'in' : 'out'}`}>
       <h1>Level Passed!</h1>

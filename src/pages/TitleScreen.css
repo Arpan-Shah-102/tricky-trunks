@@ -125,6 +125,17 @@ button {
     color: crimson;
   }
 }
+.tutorial-btn {
+  color: goldenrod;
+  border: 2px solid goldenrod;
+
+  &:hover {
+    background-color: goldenrod;
+  }
+  &:active {
+    color: goldenrod;
+  }
+}
 .toggle {
   display: flex;
   justify-content: center;
